@@ -1,384 +1,151 @@
-
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>Neuropsychiatric Inventory</title>
+  <title>NPI-Q 修正版（12 項）</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    table, th, td {
-      border: 1px solid #aaa;
-      border-collapse: collapse;
-      padding: 8px;
-      text-align: center;
-    }
-    th { background-color: #f2f2f2; }
-    .report-box {
-      margin-top: 30px;
-      border: 1px solid #ccc;
-      padding: 15px;
-    }
-    .button {
-      margin-top: 15px;
-      padding: 8px 16px;
-    }
+    body { font-family: sans-serif; margin: 40px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f0f0f0; }
+    label { margin-right: 10px; }
+    .section { margin-bottom: 20px; }
   </style>
 </head>
 <body>
-  <h2>Neuropsychiatric Inventory（Frequency & Severity）</h2>
-  <form id="npiq-form">
-    <table>
-      <tr>
-        <th>項目</th>
-        <th>Frequency (0-4)</th>
-        <th>Severity (0-3)</th>
-      </tr>
+  <h2>NPI-Q 修正版（12 項目）</h2>
 
-      <tr>
-        <td>1. 妄想 (Delusions)</td>
-        <td>
-          <select id="freq1">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev1">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>2. 幻覺 (Hallucinations)</td>
-        <td>
-          <select id="freq2">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev2">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>3. 情緒高漲 (Elation/Euphoria)</td>
-        <td>
-          <select id="freq3">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev3">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>4. 焦慮 (Anxiety)</td>
-        <td>
-          <select id="freq4">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev4">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>5. 抑鬱 (Depression/Dysphoria)</td>
-        <td>
-          <select id="freq5">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev5">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>6. 冷漠 (Apathy/Indifference)</td>
-        <td>
-          <select id="freq6">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev6">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>7. 易怒 (Irritability/Lability)</td>
-        <td>
-          <select id="freq7">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev7">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>8. 異常運動 (Aberrant Motor Behavior)</td>
-        <td>
-          <select id="freq8">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev8">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>9. 睡眠問題 (Nighttime Behaviors)</td>
-        <td>
-          <select id="freq9">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev9">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>10. 食慾/飲食改變 (Appetite/Eating)</td>
-        <td>
-          <select id="freq10">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev10">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>11. 不當行為 (Disinhibition)</td>
-        <td>
-          <select id="freq11">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev11">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-      <tr>
-        <td>12. 幻覺行為 (Delusional Misidentifications)</td>
-        <td>
-          <select id="freq12">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </td>
-        <td>
-          <select id="sev12">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    
-    </table>
-    <button type="button" class="button" onclick="generateReport()">提交並產生報告</button>
-  </form>
+  <div class="section">
+    <label>資料來源：</label>
+    <label><input type="checkbox" name="source"> 病人</label>
+    <label><input type="checkbox" name="source"> 家屬</label>
+  </div>
 
-  <div class="report-box" id="report" style="display:none;">
-    <h3>📄 Neuropsychiatric Inventory Report</h3>
-    <div id="reportContent"></div>
+  <table>
+    <thead>
+      <tr>
+        <th>項目名稱（中／英）</th>
+        <th>是否有症狀</th>
+        <th>嚴重度 (0–3)</th>
+        <th>照顧者困擾程度 (0–5)</th>
+      </tr>
+    </thead>
+    <tbody id="formBody">
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">TOTAL 總分</th>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    const items = [
+      ['妄想', 'Delusions'],
+      ['幻覺', 'Hallucinations'],
+      ['激動／攻擊行為', 'Agitation/Aggression'],
+      ['憂鬱／情緒不佳', 'Dysphoria/Depression'],
+      ['焦慮', 'Anxiety'],
+      ['昂然自得／欣快感', 'Euphoria/Elation'],
+      ['冷漠／毫不在意', 'Apathy/Indifference'],
+      ['言行失控', 'Disinhibition'],
+      ['暴躁易怒／情緒易變', 'Irritability/Lability'],
+      ['怪異動作', 'Aberrant Motor'],
+      ['睡眠／夜間行為', 'Nighttime Behavior'],
+      ['食慾／飲食行為改變', 'Appetite/Eating']
+    ];
+
+    const formBody = document.getElementById("formBody");
+
+    items.forEach(([zh, en]) => {
+      const row = document.createElement("tr");
+
+      const nameCell = document.createElement("td");
+      nameCell.innerHTML = `${zh}<br><small>(${en})</small>`;
+      row.appendChild(nameCell);
+
+      const symptomCell = document.createElement("td");
+      symptomCell.innerHTML = '<label><input type="checkbox"> 有</label><br><label><input type="checkbox"> 無</label>';
+      row.appendChild(symptomCell);
+
+      const severityCell = document.createElement("td");
+      for (let i = 0; i <= 3; i++) {
+        severityCell.innerHTML += `<label><input type="checkbox"> ${i}</label> `;
+      }
+      row.appendChild(severityCell);
+
+      const distressCell = document.createElement("td");
+      for (let i = 0; i <= 5; i++) {
+        distressCell.innerHTML += `<label><input type="checkbox"> ${i}</label> `;
+      }
+      row.appendChild(distressCell);
+
+      formBody.appendChild(row);
+    });
+  </script>
+
+  <div class="section">
+    <button onclick="generateReport()">產生報告</button>
+    <h3>報告結果：</h3>
+    <pre id="reportOutput" style="white-space: pre-wrap; background: #f9f9f9; padding: 10px; border: 1px solid #ccc;"></pre>
   </div>
 
   <script>
     function generateReport() {
-      let totalFreq = 0;
-      let totalSev = 0;
-      let reportHtml = "<table><tr><th>項目</th><th>頻率</th><th>嚴重度</th></tr>";
+      let report = "";
+      let severityTotal = 0;
+      let distressTotal = 0;
 
-      const f1 = parseInt(document.getElementById("freq1").value);
-      const s1 = parseInt(document.getElementById("sev1").value);
-      totalFreq += f1;
-      totalSev += s1;
-      reportHtml += `<tr><td>1. 妄想 (Delusions)</td><td>${f1}</td><td>${s1}</td></tr>`;
-    
-      const f2 = parseInt(document.getElementById("freq2").value);
-      const s2 = parseInt(document.getElementById("sev2").value);
-      totalFreq += f2;
-      totalSev += s2;
-      reportHtml += `<tr><td>2. 幻覺 (Hallucinations)</td><td>${f2}</td><td>${s2}</td></tr>`;
-    
-      const f3 = parseInt(document.getElementById("freq3").value);
-      const s3 = parseInt(document.getElementById("sev3").value);
-      totalFreq += f3;
-      totalSev += s3;
-      reportHtml += `<tr><td>3. 情緒高漲 (Elation/Euphoria)</td><td>${f3}</td><td>${s3}</td></tr>`;
-    
-      const f4 = parseInt(document.getElementById("freq4").value);
-      const s4 = parseInt(document.getElementById("sev4").value);
-      totalFreq += f4;
-      totalSev += s4;
-      reportHtml += `<tr><td>4. 焦慮 (Anxiety)</td><td>${f4}</td><td>${s4}</td></tr>`;
-    
-      const f5 = parseInt(document.getElementById("freq5").value);
-      const s5 = parseInt(document.getElementById("sev5").value);
-      totalFreq += f5;
-      totalSev += s5;
-      reportHtml += `<tr><td>5. 抑鬱 (Depression/Dysphoria)</td><td>${f5}</td><td>${s5}</td></tr>`;
-    
-      const f6 = parseInt(document.getElementById("freq6").value);
-      const s6 = parseInt(document.getElementById("sev6").value);
-      totalFreq += f6;
-      totalSev += s6;
-      reportHtml += `<tr><td>6. 冷漠 (Apathy/Indifference)</td><td>${f6}</td><td>${s6}</td></tr>`;
-    
-      const f7 = parseInt(document.getElementById("freq7").value);
-      const s7 = parseInt(document.getElementById("sev7").value);
-      totalFreq += f7;
-      totalSev += s7;
-      reportHtml += `<tr><td>7. 易怒 (Irritability/Lability)</td><td>${f7}</td><td>${s7}</td></tr>`;
-    
-      const f8 = parseInt(document.getElementById("freq8").value);
-      const s8 = parseInt(document.getElementById("sev8").value);
-      totalFreq += f8;
-      totalSev += s8;
-      reportHtml += `<tr><td>8. 異常運動 (Aberrant Motor Behavior)</td><td>${f8}</td><td>${s8}</td></tr>`;
-    
-      const f9 = parseInt(document.getElementById("freq9").value);
-      const s9 = parseInt(document.getElementById("sev9").value);
-      totalFreq += f9;
-      totalSev += s9;
-      reportHtml += `<tr><td>9. 睡眠問題 (Nighttime Behaviors)</td><td>${f9}</td><td>${s9}</td></tr>`;
-    
-      const f10 = parseInt(document.getElementById("freq10").value);
-      const s10 = parseInt(document.getElementById("sev10").value);
-      totalFreq += f10;
-      totalSev += s10;
-      reportHtml += `<tr><td>10. 食慾/飲食改變 (Appetite/Eating)</td><td>${f10}</td><td>${s10}</td></tr>`;
-    
-      const f11 = parseInt(document.getElementById("freq11").value);
-      const s11 = parseInt(document.getElementById("sev11").value);
-      totalFreq += f11;
-      totalSev += s11;
-      reportHtml += `<tr><td>11. 不當行為 (Disinhibition)</td><td>${f11}</td><td>${s11}</td></tr>`;
-    
-      const f12 = parseInt(document.getElementById("freq12").value);
-      const s12 = parseInt(document.getElementById("sev12").value);
-      totalFreq += f12;
-      totalSev += s12;
-      reportHtml += `<tr><td>12. 幻覺行為 (Delusional Misidentifications)</td><td>${f12}</td><td>${s12}</td></tr>`;
-    
-      reportHtml += "</table>";
-      reportHtml += `<p><strong>總頻率分數：</strong> ${totalFreq} / 48</p>`;
-      reportHtml += `<p><strong>總嚴重度分數：</strong> ${totalSev} / 36</p>`;
-      document.getElementById("reportContent").innerHTML = reportHtml;
-      document.getElementById("report").style.display = "block";
+      const rows = document.querySelectorAll("tbody tr");
+      rows.forEach((row, idx) => {
+        const cells = row.querySelectorAll("td");
+        if (cells.length < 4) return;
+
+        const itemName = row.querySelector("td").innerText.trim();
+        const symptomYes = cells[1].querySelectorAll("input")[0].checked;
+        const symptomNo = cells[1].querySelectorAll("input")[1].checked;
+
+        if (symptomYes) {
+          report += `【${itemName}】
+`;
+          report += `有症狀
+`;
+
+          const severityInputs = cells[2].querySelectorAll("input");
+          severityInputs.forEach((input, i) => {
+            if (input.checked) {
+              report += `嚴重度：${i}
+`;
+              severityTotal += i;
+            }
+          });
+
+          const distressInputs = cells[3].querySelectorAll("input");
+          distressInputs.forEach((input, i) => {
+            if (input.checked) {
+              report += `照顧者困擾程度：${i}
+`;
+              distressTotal += i;
+            }
+          });
+
+          report += `
+`;
+        }
+      });
+
+      report += `=== 總結 ===
+`;
+      report += `嚴重度總分：${severityTotal}
+`;
+      report += `照顧者困擾總分：${distressTotal}
+`;
+
+      document.getElementById("reportOutput").textContent = report;
     }
   </script>
 </body>
+
 </html>
